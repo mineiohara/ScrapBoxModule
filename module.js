@@ -1,3 +1,5 @@
+// Created by: Justin Iohara
+
 export function GenerateButton(userDirectory, targetDirectory, newPageTitle, newPageBody){
     scrapbox.PageMenu.addMenu({
          title: 'Add',
