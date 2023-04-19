@@ -1,24 +1,25 @@
 // Created by: Justin Iohara
 
-export function GenerateButton(userDirectory, targetDirectory, newPageTitle, newPageBody){
+export function init(userDirectory, targetDirectory, newPageTitle, newPageBody){
     scrapbox.PageMenu.addMenu({
          title: 'Add',
          image: 'https://gyazo.com/9aee42065c83dfb31074fffa34faaacd/raw'
      })
+}
 
-     scrapbox.PageMenu('Add').addItem({
-          title: () => 'テスト',
+export function GenerateButton(buttonName, userDirectory, targetDirectory, newPageTitle, newPageBody){
+    scrapbox.PageMenu('Add').addItem({
+          title: () => buttonName,
           onClick: () => (function(){
-            let dt = new Date()
-             let result = dt.getFullYear()  + '/' + ("00" + (dt.getMonth()+1)).slice(-2) + '/' + ("00" + (dt.getDate())).slice(-2)
+              let dt = new Date()
+              let result = dt.getFullYear()  + '/' + ("00" + (dt.getMonth()+1)).slice(-2) + '/' + ("00" + (dt.getDate())).slice(-2)
+              let url1 = userDirectory + '/' + encodeURIComponent(newPageTitle + result) + '?body=' + encodeURIComponent(newPageBody)
+              let url2 = targetDirectory + '?body=' + encodeURIComponent('[' + newPageTitle + result + ']')
 
-               let url1 = userDirectory + '/' + encodeURIComponent(newPageTitle + result) + '?body=' + encodeURIComponent(newPageBody)
-               let url2 = targetDirectory + '?body=' + encodeURIComponent('[' + newPageTitle + result + ']')
-
-            window.open(url1, '_blank')
-               location.href = url2
+              window.open(url1, '_blank')
+              location.href = url2
           })()
-      })
+    })
 }
 
 export function PasteTemplate(name, body){
